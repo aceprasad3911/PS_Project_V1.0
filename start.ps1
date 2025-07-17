@@ -22,5 +22,5 @@ Write-Host "Opening browser: http://localhost:5000" -ForegroundColor Cyan
 Write-Host "Press Ctrl+C to stop" -ForegroundColor Gray
 Write-Host ""
 
-# Start server
-npx tsx server/index.ts
+# Start server with development authentication
+npx tsx run-dev.js

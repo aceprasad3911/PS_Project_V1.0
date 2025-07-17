@@ -31,18 +31,20 @@ A React-based agentic UI for Publicis Sapient with Slingshot AI integration, fea
 
 4. **Start Development Server**
    ```powershell
-   # PowerShell (Recommended)
+   # PowerShell (Recommended) - Includes development authentication
    .\dev.ps1
    
-   # Command Prompt
+   # Command Prompt - Includes development authentication
    .\dev.bat
    
-   # Quick start (bypasses database setup)
+   # Quick start (bypasses database setup) - Includes development authentication
    .\start.ps1
    
-   # Cross-platform
+   # Cross-platform (uses production Replit auth)
    npm run dev
    ```
+
+   **Note**: The PowerShell and batch scripts automatically set up development authentication that bypasses Replit OAuth, allowing you to test the application locally without authentication setup.
 
 ### Cross-Platform Setup
 
