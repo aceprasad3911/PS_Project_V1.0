@@ -1,0 +1,60 @@
+C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> setup.bat
+setup.bat : The term 'setup.bat' is not recognized as the name of a 
+cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the 
+path is correct and try again.
+At line:1 char:1
++ setup.bat
++ ~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (setup.bat:String) [] 
+   , CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+
+Suggestion [3,General]: The command setup.bat was not found, but does exist in the current location. Windows PowerShell does not load commands from the current location by default. If you trust this command, instead type: ".\setup.bat". See "get-help about_Command_Precedence" for more details.
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> dev.bat
+dev.bat : The term 'dev.bat' is not recognized as the name of a 
+cmdlet, function, script file, or operable program. Check the        
+spelling of the name, or if a path was included, verify that the     
+path is correct and try again.
+At line:1 char:1
++ dev.bat
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (dev.bat:String) [],   
+   CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+
+Suggestion [3,General]: The command dev.bat was not found, but does exist in the current location. Windows PowerShell does not load commands from the current location by default. If you trust this command, instead type: ".\dev.bat". See "get-help about_Command_Precedence" for more details.
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> npm install
+
+added 26 packages, and audited 680 packages in 5s
+
+82 packages are looking for funding
+  run `npm fund` for details
+
+9 vulnerabilities (1 low, 8 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> npm run db:push 
+
+> rest-express@1.0.0 db:push
+> drizzle-kit push
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\drizzle.config.ts'
+DATABASE_URL, ensure the database is provisioned
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> npm run dev
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+'NODE_ENV' is not recognized as an internal or external command,
+operable program or batch file.
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> 
