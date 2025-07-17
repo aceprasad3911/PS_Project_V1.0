@@ -1,93 +1,249 @@
-# Ps Slingshot V2.0
+# Sapient Slingshot AI Platform
 
+A React-based agentic UI for Publicis Sapient with Slingshot AI integration, featuring chat capabilities, authentication, and project management.
 
+## 🚀 Quick Start
 
-## Getting started
+### Windows Setup (Recommended)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+1. **Prerequisites**
+   - Node.js 18+ (download from https://nodejs.org/)
+   - PostgreSQL 12+ (or use cloud database)
+   - Git
+   - VS Code (recommended)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+2. **Installation**
+   ```bash
+   # Clone the repository
+   git clone <repository-url>
+   cd PS_Project_V1.0
+   
+   # Run setup script
+   setup.bat
+   ```
 
-## Add your files
+3. **Configuration**
+   - Edit `.env` file with your database credentials
+   - Set up PostgreSQL database (local or cloud)
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+4. **Start Development Server**
+   ```bash
+   # Windows
+   dev.bat
+   
+   # OR cross-platform
+   npm run dev
+   ```
+
+### Cross-Platform Setup
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Database Setup**
+   ```bash
+   # Create database and push schema
+   npm run db:push
+   ```
+
+3. **Start Development**
+   ```bash
+   # Development server
+   npm run dev
+   
+   # OR start components separately
+   npm run server    # Backend only
+   npm run client    # Frontend only
+   ```
+
+## 🏗️ Architecture
+
+### Frontend (React + TypeScript)
+- **Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **State Management**: React Query
+- **Routing**: Wouter
+- **Build**: Vite
+
+### Backend (Node.js + Express)
+- **Framework**: Express.js
+- **Database**: PostgreSQL with Drizzle ORM
+- **Authentication**: Replit Auth (OpenID Connect)
+- **WebSocket**: Real-time chat support
+
+### Key Features
+- ✅ Publicis Sapient branding (red/black theme)
+- ✅ Authentication with Replit OAuth
+- ✅ Project management dashboard
+- ✅ Real-time AI chat assistant
+- ✅ WebSocket integration
+- ✅ Database-backed sessions
+- ✅ Responsive design
+
+## 📂 Project Structure
 
 ```
-cd existing_repo
-git remote add origin https://pscode.lioncloud.net/ayuprasa2/ps_slingshot_v2.0.git
-git branch -M main
-git push -uf origin main
+PS_Project_V1.0/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/     # UI components
+│   │   │   ├── chat/       # Chat interface
+│   │   │   ├── dashboard/  # Dashboard components
+│   │   │   └── layout/     # Layout components
+│   │   ├── pages/          # Page components
+│   │   │   ├── landing.tsx # Landing page
+│   │   │   ├── dashboard.tsx
+│   │   │   └── chat.tsx
+│   │   ├── hooks/          # Custom hooks
+│   │   └── lib/            # Utilities
+├── server/                 # Express backend
+│   ├── routes.ts           # API routes
+│   ├── db.ts              # Database config
+│   ├── storage.ts         # Data layer
+│   └── replitAuth.ts      # Authentication
+├── shared/                 # Shared types
+│   └── schema.ts          # Database schema
+├── .env.example           # Environment template
+├── dev.bat               # Windows dev script
+└── setup.bat            # Windows setup script
 ```
 
-## Integrate with your tools
+## 🗄️ Database Schema
 
-- [ ] [Set up project integrations](https://pscode.lioncloud.net/ayuprasa2/ps_slingshot_v2.0/-/settings/integrations)
+### Core Tables
+- **users**: User profiles and authentication
+- **projects**: Development projects
+- **messages**: Chat messages
+- **ai_agents**: AI agent configurations
+- **sessions**: Session storage
 
-## Collaborate with your team
+### Relations
+- Users → Projects (one-to-many)
+- Users → Messages (one-to-many)
+- Projects → AI Agents (one-to-many)
+- Projects → Messages (one-to-many)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## 🔧 Development Commands
 
-## Test and Deploy
+### Windows
+```bash
+setup.bat          # Initial setup
+dev.bat            # Start development server
+```
 
-Use the built-in continuous integration in GitLab.
+### Cross-Platform
+```bash
+npm run dev        # Start full development server
+npm run server     # Backend only
+npm run client     # Frontend only
+npm run db:push    # Push database schema
+npm run build      # Production build
+npm run start      # Production server
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## 🎨 Design System
 
-***
+### Brand Colors
+- **Primary Red**: `#E31837` (PS Red)
+- **Black**: `#1A1A1A` (PS Black)
+- **Gray**: `#F8F9FA` (PS Gray)
+- **Accent**: `#6B7280` (PS Accent)
 
-# Editing this README
+### Typography
+- **Primary Font**: System font stack
+- **Headings**: Bold, PS Black
+- **Body**: Regular, PS Accent
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## 🔐 Environment Variables
 
-## Suggestions for a good README
+Create a `.env` file with:
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```env
+# Database
+DATABASE_URL=postgresql://username:password@localhost:5432/database
+PGHOST=localhost
+PGPORT=5432
+PGUSER=your_username
+PGPASSWORD=your_password
+PGDATABASE=your_database
 
-## Name
-Choose a self-explaining name for your project.
+# Authentication
+SESSION_SECRET=your-secret-key
+REPLIT_DOMAINS=localhost:5000
+REPL_ID=your-repl-id
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+# Development
+NODE_ENV=development
+PORT=5000
+```
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## 🚀 Deployment
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### Production Build
+```bash
+npm run build
+npm run start
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### Environment Setup
+- Set `NODE_ENV=production`
+- Configure production database
+- Set secure `SESSION_SECRET`
+- Configure `REPLIT_DOMAINS`
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## 🔧 Troubleshooting
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### Common Issues
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+1. **Database Connection Error**
+   - Check PostgreSQL is running
+   - Verify `.env` database credentials
+   - Run `npm run db:push`
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+2. **Authentication Issues**
+   - Verify `REPLIT_DOMAINS` settings
+   - Check `SESSION_SECRET` is set
+   - Ensure database sessions table exists
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+3. **Build Errors**
+   - Clear node_modules: `rm -rf node_modules && npm install`
+   - Check TypeScript errors: `npm run check`
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Development Tips
+- Use VS Code with TypeScript and Tailwind extensions
+- Enable auto-format on save
+- Use the integrated terminal for commands
+- Monitor console logs for errors
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## 📋 Features
 
-## License
-For open source projects, say how it is licensed.
+### Current Features
+- [x] User authentication (Replit OAuth)
+- [x] Project dashboard
+- [x] Real-time chat
+- [x] AI agent status monitoring
+- [x] WebSocket integration
+- [x] Responsive design
+- [x] Database persistence
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### Slingshot AI Integration Points
+- [x] Code generation API endpoints
+- [x] Legacy modernization placeholders
+- [x] Chat assistant interface
+- [x] Project management integration
+- [ ] Full AI model integration (requires API keys)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+>>>>>>> 2440051 (Improve Windows development and setup process for the application)
