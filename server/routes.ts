@@ -7,15 +7,7 @@ import { insertProjectSchema, insertMessageSchema, insertAiAgentSchema } from "@
 import { z } from "zod";
 
 interface AuthenticatedRequest extends Request {
-  user?: {
-    claims: {
-      sub: string;
-      email?: string;
-      first_name?: string;
-      last_name?: string;
-      profile_image_url?: string;
-    };
-  };
+  user?: any;
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
