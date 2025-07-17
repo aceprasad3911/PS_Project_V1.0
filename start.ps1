@@ -3,7 +3,8 @@ Write-Host ""
 
 # Set environment variables
 $env:NODE_ENV = "development"
-$env:PORT = "5000"
+$env:PORT = "3000"
+$env:HOST = "localhost"
 
 # Override database URL for local development (using in-memory fallback)
 $env:DATABASE_URL = "postgresql://localhost:5432/temp_db"

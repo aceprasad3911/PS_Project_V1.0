@@ -4,6 +4,7 @@ Write-Host ""
 # Set environment variables for PowerShell
 $env:NODE_ENV = "development"
 $env:PORT = "5000"
+$env:HOST = "localhost"
 
 # Check if .env file exists
 if (!(Test-Path ".env")) {

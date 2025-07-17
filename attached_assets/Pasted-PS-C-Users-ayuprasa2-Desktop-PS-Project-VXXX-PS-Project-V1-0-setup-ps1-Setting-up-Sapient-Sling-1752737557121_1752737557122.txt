@@ -1,0 +1,67 @@
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> .\setup.ps1
+Setting up Sapient Slingshot Development Environment...
+
+[SETUP] Node.js version: v24.4.0
+[SETUP] Installing dependencies...
+
+up to date, audited 680 packages in 2s
+
+82 packages are looking for funding
+  run `npm fund` for details
+
+9 vulnerabilities (1 low, 8 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[SETUP] Pushing database schema...
+Note: This may fail if DATABASE_URL is not configured - that's okay for now   
+
+> rest-express@1.0.0 db:push
+> drizzle-kit push
+
+No config path provided, using default 'drizzle.config.ts'
+Reading config file 'C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\drizzle.config.ts'
+Using 'pg' driver for database querying
+[⣽] Pulling schema from database...
+
+[SETUP] Setup complete!
+
+To start the development server:
+  For PowerShell: .\dev.ps1
+  For Command Prompt: .\dev.bat
+  For Cross-platform: npm run dev
+
+Press Enter to continue:
+
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> .\dev.ps1
+Starting Sapient Slingshot Development Server...
+
+[SERVER] Starting backend server on port 5000...
+Press Ctrl+C to stop the server
+
+node:events:485
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen ENOTSUP: operation not supported on socket 0.0.0.0:5000
+    at Server.setupListenHandle [as _listen2] (node:net:1918:21)
+    at listenInCluster (node:net:1997:12)
+    at node:net:2206:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+Emitted 'error' event on WebSocketServer instance at:
+    at Server.emit (node:events:507:28)
+    at emitErrorNT (node:net:1976:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'ENOTSUP',
+  errno: -4049,
+  syscall: 'listen',
+  address: '0.0.0.0',
+  port: 5000
+}
+
+Node.js v24.4.0
