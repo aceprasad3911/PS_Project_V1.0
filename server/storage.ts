@@ -155,4 +155,145 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-export const storage = new DatabaseStorage();
+// Memory storage for development mode
+export class MemoryStorage implements IStorage {
+  private users: Map<string, User> = new Map();
+  private projects: Map<number, Project> = new Map();
+  private messages: Map<number, Message> = new Map();
+  private aiAgents: Map<number, AiAgent> = new Map();
+  private nextProjectId = 1;
+  private nextMessageId = 1;
+  private nextAgentId = 1;
+
+  // User operations
+  async getUser(id: string): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const user: User = {
+      id: userData.id,
+      email: userData.email || null,
+      firstName: userData.firstName || null,
+      lastName: userData.lastName || null,
+      profileImageUrl: userData.profileImageUrl || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.users.set(userData.id, user);
+    return user;
+  }
+
+  // Project operations
+  async getProjects(userId: string): Promise<Project[]> {
+    return Array.from(this.projects.values()).filter(p => p.ownerId === userId);
+  }
+
+  async getProject(id: number): Promise<Project | undefined> {
+    return this.projects.get(id);
+  }
+
+  async createProject(project: InsertProject): Promise<Project> {
+    const newProject: Project = {
+      id: this.nextProjectId++,
+      name: project.name,
+      description: project.description || null,
+      status: project.status || 'draft',
+      ownerId: project.ownerId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.projects.set(newProject.id, newProject);
+    return newProject;
+  }
+
+  async updateProject(id: number, project: Partial<InsertProject>): Promise<Project> {
+    const existing = this.projects.get(id);
+    if (!existing) throw new Error('Project not found');
+    
+    const updated: Project = {
+      ...existing,
+      ...project,
+      updatedAt: new Date(),
+    };
+    this.projects.set(id, updated);
+    return updated;
+  }
+
+  async deleteProject(id: number): Promise<void> {
+    this.projects.delete(id);
+  }
+
+  // Message operations
+  async getMessages(userId: string, projectId?: number): Promise<Message[]> {
+    const userMessages = Array.from(this.messages.values()).filter(m => m.userId === userId);
+    if (projectId) {
+      return userMessages.filter(m => m.projectId === projectId);
+    }
+    return userMessages.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+  }
+
+  async createMessage(message: InsertMessage): Promise<Message> {
+    const newMessage: Message = {
+      id: this.nextMessageId++,
+      content: message.content,
+      sender: message.sender,
+      userId: message.userId,
+      projectId: message.projectId || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.messages.set(newMessage.id, newMessage);
+    return newMessage;
+  }
+
+  async deleteMessage(id: number): Promise<void> {
+    this.messages.delete(id);
+  }
+
+  // AI Agent operations
+  async getAiAgents(projectId?: number): Promise<AiAgent[]> {
+    const agents = Array.from(this.aiAgents.values());
+    if (projectId) {
+      return agents.filter(a => a.projectId === projectId);
+    }
+    return agents.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+  }
+
+  async createAiAgent(agent: InsertAiAgent): Promise<AiAgent> {
+    const newAgent: AiAgent = {
+      id: this.nextAgentId++,
+      name: agent.name,
+      type: agent.type,
+      status: agent.status || 'idle',
+      configuration: agent.configuration || {},
+      projectId: agent.projectId || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.aiAgents.set(newAgent.id, newAgent);
+    return newAgent;
+  }
+
+  async updateAiAgent(id: number, agent: Partial<InsertAiAgent>): Promise<AiAgent> {
+    const existing = this.aiAgents.get(id);
+    if (!existing) throw new Error('AI Agent not found');
+    
+    const updated: AiAgent = {
+      ...existing,
+      ...agent,
+      updatedAt: new Date(),
+    };
+    this.aiAgents.set(id, updated);
+    return updated;
+  }
+
+  async deleteAiAgent(id: number): Promise<void> {
+    this.aiAgents.delete(id);
+  }
+}
+
+// Export storage instance based on environment
+export const storage = (process.env.NODE_ENV === 'development' && process.env.REPL_ID === 'development-repl-id') 
+  ? new MemoryStorage() 
+  : new DatabaseStorage();

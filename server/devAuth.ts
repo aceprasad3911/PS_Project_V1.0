@@ -1,12 +1,19 @@
 import type { Express, RequestHandler } from "express";
 import session from "express-session";
+import MemoryStore from "memorystore";
 import { storage } from "./storage";
 
 // Simple development authentication bypass
 export function setupDevAuth(app: Express) {
+  // Create memory store for development sessions
+  const memoryStore = MemoryStore(session);
+  
   // Session configuration for development
   app.use(session({
     secret: process.env.SESSION_SECRET || "dev-secret-key",
+    store: new memoryStore({
+      checkPeriod: 86400000, // prune expired entries every 24h
+    }),
     resave: false,
     saveUninitialized: false,
     cookie: {
