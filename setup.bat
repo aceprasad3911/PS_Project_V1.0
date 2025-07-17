@@ -30,9 +30,10 @@ if not exist .env (
     echo.
 )
 
-:: Push database schema
+:: Push database schema (skip if no database configured)
 echo [SETUP] Pushing database schema...
-call npm run db:push
+echo Note: This may fail if DATABASE_URL is not configured - that's okay for now
+call npm run db:push 2>nul || echo Database push skipped - configure DATABASE_URL in .env file
 
 echo.
 echo [SETUP] Setup complete!

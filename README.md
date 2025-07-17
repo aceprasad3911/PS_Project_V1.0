@@ -13,13 +13,16 @@ A React-based agentic UI for Publicis Sapient with Slingshot AI integration, fea
    - VS Code (recommended)
 
 2. **Installation**
-   ```bash
+   ```powershell
    # Clone the repository
    git clone <repository-url>
    cd PS_Project_V1.0
    
-   # Run setup script
-   setup.bat
+   # Run setup script (PowerShell)
+   .\setup.ps1
+   
+   # OR for Command Prompt
+   .\setup.bat
    ```
 
 3. **Configuration**
@@ -27,11 +30,17 @@ A React-based agentic UI for Publicis Sapient with Slingshot AI integration, fea
    - Set up PostgreSQL database (local or cloud)
 
 4. **Start Development Server**
-   ```bash
-   # Windows
-   dev.bat
+   ```powershell
+   # PowerShell (Recommended)
+   .\dev.ps1
    
-   # OR cross-platform
+   # Command Prompt
+   .\dev.bat
+   
+   # Quick start (bypasses database setup)
+   .\start.ps1
+   
+   # Cross-platform
    npm run dev
    ```
 
