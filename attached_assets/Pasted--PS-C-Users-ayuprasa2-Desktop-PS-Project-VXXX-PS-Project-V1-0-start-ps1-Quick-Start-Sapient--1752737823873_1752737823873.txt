@@ -1,0 +1,121 @@
+
+PS C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0> .\start.ps1
+Quick Start - Sapient Slingshot (Development Mode)
+
+[QUICK START] Starting server with development configuration...
+Database: Using fallback configuration
+Port: 5000
+Mode: Development
+
+Opening browser: http://localhost:5000
+Press Ctrl+C to stop
+
+1:05:19 PM [express] serving on localhost:3000
+Browserslist: browsers data (caniuse-lite) is 9 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+1:05:31 PM [express] GET /api/auth/user 401 in 1ms :: {"message":"Unauthorized"}
+1:05:36 PM [express] GET /api/login 500 in 1ms :: {"message":"Unknown authentication strategy \"repl…
+Error: Unknown authentication strategy "replitauth:localhost"
+    at attempt (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:193:39)
+    at authenticate (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:379:7)
+    at <anonymous> (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\server\replitAuth.ts:108:6)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at strategy.pass (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:355:9)
+    at SessionStrategy.authenticate (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\strategies\session.js:126:10)     
+    at attempt (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:378:16)
+    at authenticate (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:379:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at initialize (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\initialize.js:98:5)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at session (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express-session\index.js:487:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at <anonymous> (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\server\index.ts:37:3)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\body-parser\lib\types\urlencoded.js:94:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at jsonParser (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\body-parser\lib\types\json.js:113:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at expressInit (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\middleware\init.js:40:5)
+1:05:43 PM [express] GET /api/login 500 in 1ms :: {"message":"Unknown authentication strategy \"repl…
+Error: Unknown authentication strategy "replitauth:localhost"
+    at attempt (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:193:39)
+    at authenticate (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:379:7)
+    at <anonymous> (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\server\replitAuth.ts:108:6)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:284:15
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at strategy.pass (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:355:9)
+    at SessionStrategy.authenticate (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\strategies\session.js:126:10)     
+    at attempt (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:378:16)
+    at authenticate (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\authenticate.js:379:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at initialize (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\passport\lib\middleware\initialize.js:98:5)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at session (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express-session\index.js:487:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at <anonymous> (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\server\index.ts:37:3)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\body-parser\lib\types\urlencoded.js:94:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at jsonParser (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\body-parser\lib\types\json.js:113:7)
+    at Layer.handle [as handle_request] (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:328:13)
+    at C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:286:9
+    at router.process_params (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\router\index.js:280:10)
+    at expressInit (C:\Users\ayuprasa2\Desktop\PS_Project_VXXX\PS_Project_V1.0\node_modules\express\lib\middleware\init.js:40:5)

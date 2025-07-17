@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
+import { setupDevAuth, isAuthenticated as isDevAuthenticated } from "./devAuth";
 import { insertProjectSchema, insertMessageSchema, insertAiAgentSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -11,11 +12,22 @@ interface AuthenticatedRequest extends Request {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Auth middleware
-  await setupAuth(app);
+  // Auth middleware - use development auth in local development
+  if (process.env.NODE_ENV === 'development' && process.env.REPL_ID === 'development-repl-id') {
+    console.log("[DEV] Using development authentication");
+    setupDevAuth(app);
+  } else {
+    console.log("[PROD] Using Replit authentication");
+    await setupAuth(app);
+  }
+
+  // Choose authentication middleware based on environment
+  const authMiddleware = (process.env.NODE_ENV === 'development' && process.env.REPL_ID === 'development-repl-id') 
+    ? isDevAuthenticated 
+    : isAuthenticated;
 
   // Auth routes
-  app.get('/api/auth/user', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.get('/api/auth/user', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = req.user?.claims.sub;
       if (!userId) {
@@ -31,7 +43,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Project routes
-  app.get('/api/projects', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.get('/api/projects', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = req.user?.claims.sub;
       if (!userId) {
@@ -46,7 +58,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/projects', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.post('/api/projects', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = req.user?.claims.sub;
       if (!userId) {
@@ -69,7 +81,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put('/api/projects/:id', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.put('/api/projects/:id', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const projectId = parseInt(req.params.id);
       const validatedData = insertProjectSchema.partial().parse(req.body);
@@ -85,7 +97,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete('/api/projects/:id', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.delete('/api/projects/:id', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const projectId = parseInt(req.params.id);
       await storage.deleteProject(projectId);
@@ -97,7 +109,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Message routes
-  app.get('/api/messages', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.get('/api/messages', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = req.user?.claims.sub;
       if (!userId) {
@@ -113,7 +125,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/messages', isAuthenticated, async (req: AuthenticatedRequest, res: Response) => {
+  app.post('/api/messages', authMiddleware, async (req: AuthenticatedRequest, res: Response) => {
     try {
       const userId = req.user?.claims.sub;
       if (!userId) {
@@ -137,7 +149,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // AI Agent routes
-  app.get('/api/ai-agents', isAuthenticated, async (req: Request, res: Response) => {
+  app.get('/api/ai-agents', authMiddleware, async (req: Request, res: Response) => {
     try {
       const projectId = req.query.projectId ? parseInt(req.query.projectId as string) : undefined;
       const agents = await storage.getAiAgents(projectId);
@@ -148,7 +160,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/ai-agents', isAuthenticated, async (req: Request, res: Response) => {
+  app.post('/api/ai-agents', authMiddleware, async (req: Request, res: Response) => {
     try {
       const validatedData = insertAiAgentSchema.parse(req.body);
       const agent = await storage.createAiAgent(validatedData);
@@ -162,7 +174,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put('/api/ai-agents/:id', isAuthenticated, async (req: Request, res: Response) => {
+  app.put('/api/ai-agents/:id', authMiddleware, async (req: Request, res: Response) => {
     try {
       const agentId = parseInt(req.params.id);
       const validatedData = insertAiAgentSchema.partial().parse(req.body);
@@ -179,7 +191,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Slingshot AI integration endpoints
-  app.post('/api/slingshot/generate-code', isAuthenticated, async (req: Request, res: Response) => {
+  app.post('/api/slingshot/generate-code', authMiddleware, async (req: Request, res: Response) => {
     try {
       const { prompt, projectId } = req.body;
       
@@ -199,7 +211,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/slingshot/modernize', isAuthenticated, async (req: Request, res: Response) => {
+  app.post('/api/slingshot/modernize', authMiddleware, async (req: Request, res: Response) => {
     try {
       const { legacyCode, targetFramework } = req.body;
       
