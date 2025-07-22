@@ -330,20 +330,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Slingshot AI chat create endpoint
   app.post('/api/chat', async (req: Request, res: Response) => {
     try {
-      // Map incoming schema to storage.createMessage expected shape
-      // { content, role, userId, projectId? }
+      // Extract user message
       const { message, name, type, messageid, async, options } = req.body;
-      // For demo, use name as role, message as content, and a dummy userId
-      const chatData = {
-        content: message,
-        role: name || "user",
+      // Simulate AI response (replace with real AI integration)
+      const aiResponse = {
+        content: `AI response to: ${message}`,
+        role: "assistant",
         userId: "demo-user", // Replace with real userId if available
         projectId: undefined,
+        createdAt: new Date().toISOString(),
       };
-      const created = await storage.createMessage(chatData);
-      res.status(201).type('application/json').json({ data: created });
+      // Only return the AI response, do NOT store the user message
+      res.status(200).type('application/json').json({ data: aiResponse });
     } catch (error: any) {
-      res.status(500).type('application/json').json({ error: 'Failed to create chat message', details: error.message });
+      res.status(500).type('application/json').json({ error: 'Failed to generate AI response', details: error.message });
     }
   });
 

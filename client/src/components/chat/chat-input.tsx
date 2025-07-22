@@ -16,33 +16,27 @@ export function ChatInput() {
 
   const sendMessageMutation = useMutation({
     mutationFn: async (content: string) => {
+      // Post user message to /api/messages
       await apiRequest("POST", "/api/messages", {
         content,
         role: "user",
       });
+      // Call Slingshot AI chat endpoint with correct shape
+      const aiRes = await apiRequest("POST", "/api/chat", {
+        message: content,
+        name: "user",
+      });
+      // Post AI response to /api/messages so it appears in chat
+      if (aiRes && aiRes.data && aiRes.data.content) {
+        await apiRequest("POST", "/api/messages", {
+          content: aiRes.data.content,
+          role: "assistant",
+        });
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/messages"] });
       setMessage("");
-      
-      // Simulate AI response
-      setTimeout(() => {
-        const responses = [
-          "I can help you with that! Let me generate the code for you.",
-          "That's a great question. Let me analyze your project and provide a solution.",
-          "I'll create a component that meets your requirements. Give me a moment.",
-          "Based on your project context, I recommend the following approach...",
-        ];
-        
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        
-        apiRequest("POST", "/api/messages", {
-          content: randomResponse,
-          role: "assistant",
-        }).then(() => {
-          queryClient.invalidateQueries({ queryKey: ["/api/messages"] });
-        });
-      }, 1000);
     },
     onError: (error) => {
       if (isUnauthorizedError(error)) {
@@ -71,12 +65,7 @@ export function ChatInput() {
     }
   };
 
-  const quickActions = [
-    "Generate Code",
-    "Review PR",
-    "Create Tests",
-    "Debug Issue"
-  ];
+  const quickActions = ["Generate Code", "Review PR", "Create Tests", "Debug Issue"];
 
   return (
     <div className="p-4 border-t border-gray-200">
@@ -88,8 +77,8 @@ export function ChatInput() {
           className="flex-1"
           disabled={sendMessageMutation.isPending}
         />
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           size="icon"
           className="bg-ps-red hover:bg-red-700"
           disabled={sendMessageMutation.isPending || !message.trim()}
@@ -97,7 +86,7 @@ export function ChatInput() {
           <Send className="w-4 h-4" />
         </Button>
       </form>
-      
+
       <div className="flex items-center space-x-2">
         {quickActions.map((action) => (
           <Button
