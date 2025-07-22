@@ -229,6 +229,140 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Slingshot AI chat models endpoint
+  app.get('/api/chat/models', (req: Request, res: Response) => {
+    res.type('application/json').json({
+      data: [
+        {
+          id: "gpt35turbo",
+          name: "GPT 3.5 Turbo",
+          group: "Standard",
+          enabled: true,
+          tokencontextlength: 4097,
+        },
+        {
+          name: "modelid2",
+          group: "groupname",
+          enabled: true,
+          tokencontextlength: 4097,
+        },
+      ],
+    });
+  });
+
+  // Slingshot AI chat model contexts endpoint
+  app.get('/api/chat/models/:modelid/contexts', (req: Request, res: Response) => {
+    const { modelid } = req.params;
+    // You can later customize the response based on modelid if needed
+    res.type('application/json').json({
+      data: [
+        {
+          id: "data_coe_f3b54921_db1d_48b4_ad77_f43b126a4e4c",
+          name: "Data CoE Confluence content",
+          description: "Use this tool for any information about Data CoE Community Center of Excellence, Partnerships with companies, Competencies for Data Analytics, Engineering and Data Science, Sudhan Sudharsan",
+          enabled: true
+        }
+      ]
+    });
+  });
+
+  // Slingshot AI chat commands endpoint
+  app.get('/api/chat/commands', (req: Request, res: Response) => {
+    res.type('application/json').json({
+      data: [
+        // Add your command objects here
+        // Example:
+        // {
+        //   id: "command1",
+        //   name: "Sample Command",
+        //   description: "This is a sample command for Slingshot AI chat.",
+        //   enabled: true
+        // }
+      ]
+    });
+  });
+
+  // Slingshot AI chat history endpoint
+  app.get('/api/chat/history', async (req: Request, res: Response) => {
+    try {
+      // Use storage.getMessages for chat history
+      // You can filter by type if needed
+      const offset = parseInt(req.query.offset as string) || 0;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const type = req.query.type as string || "";
+      // For now, just get all messages (no type filter)
+      // Use dummy userId and projectId for demo
+      const messages = await storage.getMessages("demo-user", undefined);
+      // Simulate pagination
+      const paged = messages.slice(offset, offset + limit);
+      res.type('application/json').json({ data: paged, offset, limit, type });
+    } catch (error: any) {
+      res.status(500).type('application/json').json({ error: 'Failed to fetch chat history', details: error.message });
+    }
+  });
+
+  // Slingshot AI chat get by id endpoint
+  app.get('/api/chat/:id', async (req: Request, res: Response) => {
+    try {
+      // Use storage.getMessages and find by id
+      const messages = await storage.getMessages("demo-user", undefined);
+      const chat = messages.find((m: any) => String(m.id) === req.params.id);
+      if (!chat) return res.status(404).type('application/json').json({ error: 'Chat message not found' });
+      res.type('application/json').json({ data: chat });
+    } catch (error: any) {
+      res.status(500).type('application/json').json({ error: 'Failed to fetch chat message', details: error.message });
+    }
+  });
+
+  // Slingshot AI chat delete by id endpoint
+  app.delete('/api/chat/:id', async (req: Request, res: Response) => {
+    try {
+      // Use storage.deleteMessage (expects number id)
+      const idNum = parseInt(req.params.id);
+      if (isNaN(idNum)) return res.status(400).type('application/json').json({ error: 'Invalid id' });
+      await storage.deleteMessage(idNum);
+      res.type('application/json').json({ message: `Chat message with id ${req.params.id} deleted successfully.`, id: req.params.id });
+    } catch (error: any) {
+      res.status(500).type('application/json').json({ error: 'Failed to delete chat message', details: error.message });
+    }
+  });
+
+  // Slingshot AI chat create endpoint
+  app.post('/api/chat', async (req: Request, res: Response) => {
+    try {
+      // Map incoming schema to storage.createMessage expected shape
+      // { content, role, userId, projectId? }
+      const { message, name, type, messageid, async, options } = req.body;
+      // For demo, use name as role, message as content, and a dummy userId
+      const chatData = {
+        content: message,
+        role: name || "user",
+        userId: "demo-user", // Replace with real userId if available
+        projectId: undefined,
+      };
+      const created = await storage.createMessage(chatData);
+      res.status(201).type('application/json').json({ data: created });
+    } catch (error: any) {
+      res.status(500).type('application/json').json({ error: 'Failed to create chat message', details: error.message });
+    }
+  });
+
+  // Slingshot AI chat process file endpoint (stubbed)
+  app.post('/api/chat/processfile', async (req: Request, res: Response) => {
+    const n = req.query.n as string;
+    if (!n || typeof n !== 'string') {
+      return res.status(400).type('application/json').json({ error: 'Missing or invalid query parameter: n' });
+    }
+    // Stub response: not implemented
+    res.status(501).type('application/json').json({ error: 'File processing not implemented', n });
+  });
+
+  // Slingshot AI chat upload endpoint (stubbed)
+  app.post('/api/chat/upload', async (req: Request, res: Response) => {
+    // Stub response: not implemented
+    res.status(501).type('application/json').json({ error: 'File upload not implemented' });
+  });
+
   const httpServer = createServer(app);
 
   // WebSocket server for real-time chat
