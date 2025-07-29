@@ -51,9 +51,9 @@ export default function Chat() {
       <div className="flex-1 flex flex-col">
         <Header />
         
-        <main className="flex-1 flex flex-col p-6">
-          <div className="bg-white rounded-lg shadow-sm flex-1 flex flex-col">
-            <div className="p-6 border-b border-gray-200">
+        <main className="flex-1 flex flex-col p-6 min-h-0">
+          <div className="bg-white rounded-lg shadow-sm flex-1 flex flex-col min-h-0">
+            <div className="p-6 border-b border-gray-200 flex-shrink-0">
               <h1 className="text-2xl font-bold text-ps-black flex items-center">
                 <i className="fas fa-robot text-ps-red mr-3"></i>
                 Slingshot AI Assistant
@@ -63,8 +63,12 @@ export default function Chat() {
               </p>
             </div>
             
-            <ChatMessages messages={messages} />
-            <ChatInput />
+            <div className="flex-1 flex flex-col min-h-0">
+              <ChatMessages messages={messages} />
+              <div className="flex-shrink-0">
+                <ChatInput />
+              </div>
+            </div>
           </div>
         </main>
       </div>
