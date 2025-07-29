@@ -43,8 +43,8 @@ export function Sidebar() {
       </div>
       
       {/* Navigation */}
-      <nav className="flex-1 p-6 min-h-0 overflow-y-auto">
-        <ul className="space-y-2">
+      <nav className="flex-1 p-6">
+        <ul className="space-y-1">
           {navigation.map((item) => {
             const Icon = item.icon;
             const isActive = location === item.href;
@@ -54,14 +54,14 @@ export function Sidebar() {
                 <Link href={item.href}>
                   <div
                     className={cn(
-                      "flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors cursor-pointer",
+                      "flex items-center space-x-3 px-4 py-2.5 rounded-lg transition-colors cursor-pointer",
                       isActive
                         ? "bg-ps-red text-white"
                         : "text-gray-300 hover:bg-gray-800 hover:text-white"
                     )}
                   >
                     <Icon className="w-5 h-5" />
-                    <span>{item.name}</span>
+                    <span className="text-sm">{item.name}</span>
                   </div>
                 </Link>
               </li>
