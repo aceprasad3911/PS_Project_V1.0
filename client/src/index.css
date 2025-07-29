@@ -57,10 +57,39 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: default;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    cursor: default;
+  }
+  
+  /* Interactive elements should have appropriate cursors */
+  button, [role="button"], .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  input, textarea, [contenteditable="true"] {
+    cursor: text;
+  }
+  
+  a, [role="link"] {
+    cursor: pointer;
+  }
+  
+  select {
+    cursor: pointer;
+  }
+  
+  /* Disabled elements */
+  [disabled], .disabled {
+    cursor: not-allowed;
+  }
+  
+  /* Resize handles */
+  .resize {
+    cursor: nw-resize;
   }
 }
 
@@ -95,5 +124,30 @@
   
   .hover\:bg-red-700:hover {
     background-color: hsl(354, 77%, 43%);
+  }
+  
+  /* Cursor utilities */
+  .cursor-default {
+    cursor: default;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .cursor-text {
+    cursor: text;
+  }
+  
+  .cursor-not-allowed {
+    cursor: not-allowed;
+  }
+  
+  .cursor-move {
+    cursor: move;
+  }
+  
+  .cursor-help {
+    cursor: help;
   }
 }
