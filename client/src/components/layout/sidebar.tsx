@@ -17,8 +17,8 @@ const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
   { name: "Chat Assistant", href: "/chat", icon: MessageCircle },
   { name: "Projects", href: "/projects", icon: FolderOpen },
-  { name: "Code Generator", href: "/code", icon: Code },
-  { name: "AI Agents", href: "/agents", icon: Bot },
+  { name: "Code Generator", href: "/code-generator", icon: Code },
+  { name: "AI Agents", href: "/ai-agents", icon: Bot },
   { name: "Analytics", href: "/analytics", icon: BarChart3 },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
