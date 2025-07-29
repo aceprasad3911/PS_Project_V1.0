@@ -27,7 +27,11 @@ export function ChatMessages({ messages: propMessages = [] }: ChatMessagesProps)
   });
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Only auto-scroll if we're in a scroll container, not the main page
+    const messagesContainer = messagesEndRef.current?.closest('.scroll-area-viewport');
+    if (messagesContainer) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   }, [apiMessagesRaw, wsMessages]);
 
   useEffect(() => {

@@ -28,9 +28,9 @@ export function Sidebar() {
   const { user } = useAuth();
 
   return (
-    <div className="w-64 bg-ps-black text-white flex flex-col">
+    <div className="w-64 bg-ps-black text-white flex flex-col h-screen">
       {/* Header */}
-      <div className="p-6 border-b border-gray-700">
+      <div className="p-6 border-b border-gray-700 flex-shrink-0">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-ps-red rounded-lg flex items-center justify-center">
             <Code className="w-5 h-5 text-white" />
@@ -43,7 +43,7 @@ export function Sidebar() {
       </div>
       
       {/* Navigation */}
-      <nav className="flex-1 p-6">
+      <nav className="flex-1 p-6 min-h-0 overflow-y-auto">
         <ul className="space-y-2">
           {navigation.map((item) => {
             const Icon = item.icon;
@@ -71,7 +71,7 @@ export function Sidebar() {
       </nav>
       
       {/* User Profile */}
-      <div className="p-6 border-t border-gray-700">
+      <div className="p-6 border-t border-gray-700 flex-shrink-0">
         <div className="flex items-center space-x-3 mb-4">
           <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
             {user?.profileImageUrl ? (

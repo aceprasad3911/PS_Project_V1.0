@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/header";
 import { StatsCard } from "@/components/dashboard/stats-card";
 import { ProjectList } from "@/components/dashboard/project-list";
 import { AiAgentStatus } from "@/components/dashboard/ai-agent-status";
-import { SlingshotIntegration } from "@/components/dashboard/slingshot-integration";
+
 import { ChatPanel } from "@/components/chat/chat-panel";
 import { useQuery } from "@tanstack/react-query";
 import { Project, AiAgent } from "@shared/schema";
@@ -89,13 +89,10 @@ export default function Dashboard() {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <ProjectList projects={projects} />
             <AiAgentStatus agents={aiAgents} />
           </div>
-
-          {/* Slingshot Integration */}
-          <SlingshotIntegration />
         </main>
       </div>
 
