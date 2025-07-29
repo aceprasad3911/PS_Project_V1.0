@@ -57,39 +57,52 @@
 @layer base {
   * {
     @apply border-border;
-    cursor: default;
+    cursor: default !important;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    cursor: default;
+    cursor: default !important;
   }
   
-  /* Interactive elements should have appropriate cursors */
-  button, [role="button"], .cursor-pointer {
-    cursor: pointer;
+  /* Force default cursor on ALL elements including text elements */
+  *, *::before, *::after {
+    cursor: default !important;
+    user-select: none !important;
   }
   
+  /* Interactive elements should have pointer cursor */
+  button, [role="button"], .cursor-pointer, a, [role="link"], select {
+    cursor: pointer !important;
+  }
+  
+  /* Only input fields when actively being typed in should show text cursor */
+  input:focus, textarea:focus, [contenteditable="true"]:focus {
+    cursor: text !important;
+    user-select: text !important;
+  }
+  
+  /* Make sure inputs show text cursor and allow selection */
   input, textarea, [contenteditable="true"] {
-    cursor: text;
+    cursor: text !important;
+    user-select: text !important;
   }
   
-  a, [role="link"] {
-    cursor: pointer;
+  /* Ensure no text cursor on non-editable content */
+  p, span, div, h1, h2, h3, h4, h5, h6, td, th, li, label, pre, code {
+    cursor: default !important;
+    user-select: none !important;
   }
   
-  select {
-    cursor: pointer;
+  /* Prevent text selection on UI elements */
+  .sidebar, .header, .card, .button, nav, menu {
+    user-select: none !important;
+    cursor: default !important;
   }
   
   /* Disabled elements */
   [disabled], .disabled {
-    cursor: not-allowed;
-  }
-  
-  /* Resize handles */
-  .resize {
-    cursor: nw-resize;
+    cursor: not-allowed !important;
   }
 }
 

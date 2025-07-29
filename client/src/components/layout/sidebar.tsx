@@ -52,9 +52,9 @@ export function Sidebar() {
             return (
               <li key={item.name}>
                 <Link href={item.href}>
-                  <a
+                  <div
                     className={cn(
-                      "flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors",
+                      "flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors cursor-pointer",
                       isActive
                         ? "bg-ps-red text-white"
                         : "text-gray-300 hover:bg-gray-800 hover:text-white"
@@ -62,7 +62,7 @@ export function Sidebar() {
                   >
                     <Icon className="w-5 h-5" />
                     <span>{item.name}</span>
-                  </a>
+                  </div>
                 </Link>
               </li>
             );
